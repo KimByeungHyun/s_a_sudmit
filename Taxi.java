@@ -10,6 +10,7 @@ class Taxi extends PublicTrans {     // 택시 이용시
     int maximum = 4;            //최대 승객 수 = 4
     String base_state = "일반";  //상태 = 일반
     int speed = 0;              //속도 = 0
+    int total;
 
     Taxi(int passenger, String destination, int to_distance) {
         this.passenger = passenger;
@@ -39,7 +40,10 @@ class Taxi extends PublicTrans {     // 택시 이용시
         this.base_oil += oil;
         return this.base_oil;
     }
-
+    void pay() {
+        total += (this.base_pay+ this.to_distance*500);
+        System.out.println(total);
+    }
     void result() {
 
     }

@@ -16,6 +16,7 @@ public class model {
         Taxi taxi1 = new Taxi(2,"서울역",2);
         taxi1.checkOil(-80);
         taxi1.result();
+        taxi1.pay();
 
     }
 }
