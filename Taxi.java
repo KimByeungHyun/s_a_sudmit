@@ -12,7 +12,18 @@ class Taxi extends PublicTrans {     // 택시 이용시
     int speed = 0;              //속도 = 0
     int total;
 
-    Taxi(int passenger, String destination, int to_distance) {
+    Taxi() {
+        this.num = (int)(Math.random() * 100 + 1);
+        System.out.println("택시 번호 = " + num);
+    }
+    void taxiCheck() {
+        this.num = (int)(Math.random() * 100 + 1);
+        System.out.println("택시 번호 = " + num);
+        System.out.println("주유량 = " + this.base_oil);
+        System.out.println("상태 = " + this.base_state);
+    }
+
+    void taxi(int passenger, String destination, int to_distance) {
         this.passenger = passenger;
         this.maximum -= this.passenger;
         this.destination = destination;
@@ -22,18 +33,19 @@ class Taxi extends PublicTrans {     // 택시 이용시
         System.out.println("기본 요금 확인 = " + this.base_pay);
         System.out.println("목적지 = " + this.destination);
         System.out.println("목적지까지 거리 = " + this.to_distance + "km");
-        System.out.println("지불할 요금 = " + (this.base_pay+ this.to_distance*500));
-        if (this.passenger>0) {
+        System.out.println("지불할 요금 = " + (this.base_pay + this.to_distance * 500));
+        if (this.passenger > 0) {
             this.base_state = "운행중";
-            System.out.println("상태 = " + this.base_state );
+            System.out.println("상태 = " + this.base_state);
         }
     }
 
-    void taxiCheck() {
-        this.num = (int)(Math.random() * 100 + 1);
-        System.out.println("택시 번호 = " + num);
-        System.out.println("주유량 = " + this.base_oil);
-        System.out.println("상태 = " + this.base_state);
+    int getPassenger(int passenger) {
+        if(passenger>=5) {
+            System.out.println("!최대 승객 수 초과!");
+        }
+        this.passenger = passenger;
+        return  this.passenger;
     }
 
     int checkOil(int oil) {
@@ -41,17 +53,16 @@ class Taxi extends PublicTrans {     // 택시 이용시
         return this.base_oil;
     }
     void pay() {
-        total += (this.base_pay+ this.to_distance*500);
-        System.out.println(total);
+        this.total += (this.base_pay+ this.to_distance*500);
+        this.maximum = 4;
     }
     void result() {
-
+        System.out.println("주유량 = " + this.base_oil);
+        if(this.base_oil<=0){
+            this.base_state = "운행불가";
+            System.out.println("상태 = " + this.base_state);
+        }
+        System.out.println("누적요금 = " + this.total);
     }
 
-
-    void setDistance_pay() {
-    }
-
-    void setPay() {
-    }
 }
